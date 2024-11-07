@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SciAstra Platform</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <!-- Admin icon in the top-right corner -->
+    <div class="admin-icon" onclick="toggleAdminPage()">
+      <img src="user.png" alt="Admin Page" title="Admin Page">
+    </div>
+  </header>
+
+  <main>
+    <!-- Discounted Courses Section -->
+    <section id="courses">
+      <h2>Discounted Courses</h2>
+      <div class="search-bar">
+        <input type="text" id="course-search" placeholder="Search for courses..." oninput="filterCourses()">
+      </div>
+      <div id="course-list">
+        <!-- Course items will be dynamically injected here by JavaScript -->
+      </div>
+    </section>
+    
+
+    <!-- Blog Section -->
+    <section id="blog">
+      <h2>Blog</h2>
+      <div id="blog-list">
+        <!-- Blog posts will be dynamically injected here by JavaScript -->
+      </div>
+    </section>
+  </main>
+
+  <!-- Admin Page Overlay -->
+  <div id="admin-page" class="overlay">
+    <div class="overlay-content">
+      <h2>Admin Dashboard</h2>
+      <div id="admin-options">
+        <button onclick="toggleBlogManagement()">Blog Management</button>
+        <button onclick="toggleCourseManagement()">Course Management</button>
+      </div>
+      <div class="button-container">
+        <button class="close-btn" onclick="toggleAdminPage()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Admin Blog Management Overlay -->
+<div id="admin-blog-page" class="overlay">
+  <div class="overlay-content">
+    <h2>Blog Management</h2>
+    <form id="blog-form">
+      <label for="title">Blog Title:</label>
+      <input type="text" id="title" required>
+      
+      <label for="content">Content:</label>
+      <textarea id="content" required></textarea>
+
+      <label for="publish-date">Publish Date:</label>
+      <input type="datetime-local" id="publish-date" required>
+
+      <button type="button" onclick="addOrUpdateBlog()">Save Blog</button>
+    </form>
+    <div class="button-container">
+      <button class="close-btn" onclick="toggleBlogManagement()">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- Admin Course Management Overlay -->
+<div id="admin-course-page" class="overlay">
+  <div class="overlay-content">
+    <h2>Course Management</h2>
+    <form id="course-form">
+      <label for="course-title">Course Title:</label>
+      <input type="text" id="course-title" required>
+      
+      <label for="course-description">Description:</label>
+      <textarea id="course-description" required></textarea>
+
+      <label for="course-price">Actual Price ($):</label>
+      <input type="number" id="course-price" required>
+
+      <label for="course-discount">Discount Percentage (%):</label>
+      <input type="number" id="course-discount" required>
+
+      <button id="xxx" type="button" onclick="addCourse()">Save Course</button>
+    </form>
+    <div class="button-container">
+      <button class="close-btn" onclick="toggleCourseManagement()">Close</button>
+    </div>
+  </div>
+</div>
+<!-- Cart Page -->
+<section id="cart-page">
+  <h2>Your Cart</h2>
+  <div id="cart-items">
+    <!-- Cart items will be dynamically injected here by JavaScript -->
+  </div>
+  <div id="cart-summary">
+    <h3>Cart Summary</h3>
+    <p>Total Price: ₹<span id="total-price">0</span></p>
+    <button onclick="proceedToCheckout()">Proceed to Checkout</button>
+  </div>
+</section>
+
+<!-- Checkout Page -->
+<section id="checkout-page" style="display: none;">
+  <h2>Checkout</h2>
+  <form id="payment-form">
+    <label for="payment-method">Select Payment Method:</label>
+    <select id="payment-method" required>
+      <option value="credit-card">Credit Card</option>
+      <option value="debit-card">Debit Card</option>
+      <option value="upi">UPI</option>
+    </select>
+    <div id="payment-details">
+      <!-- Payment form fields based on selected method will be displayed here -->
+    </div>
+    <button type="submit">Pay Now</button>
+  </form>
+  <button onclick="goBackToCart()">Go Back to Cart</button>
+</section>
+
+  <script src="script.js"></script>
+</body>
+</html>
